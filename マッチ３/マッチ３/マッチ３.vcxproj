@@ -138,6 +138,12 @@
     <None Include="TitleScene_h.pdf" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FreamControl.h" />
+    <ClInclude Include="GameClearScene.h" />
+    <ClInclude Include="GameMainScene.h" />
+    <ClInclude Include="GameOverScene.h" />
+    <ClInclude Include="InputControl.h" />
+    <ClInclude Include="SceneManager.h" />
     <ClInclude Include="TitleScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
