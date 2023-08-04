@@ -287,7 +287,7 @@ void StageDraw(void) {
 
 	for (int i = 0; i < ITEM_MAX; i++)
 	{
-		DrawRotaGraph(540, 245 + i * 30, 0.5f, 0, BlockImage[i + 1], TRUE, 0, );
+		DrawRotaGraph(540, 245 + i * 30, 0.5f, 0, BlockImage[i + 1], TRUE, 0);
 
 		DrawFormatString(580, 235 + i * 30, GetColor(255, 255, 255), "%3d", Item[i]);
 
@@ -325,7 +325,7 @@ void CreatBlock(void)
 
 					Block[i][j].flg = FALSE;
 
-					Block[i][j].image = NUUL;
+					Block[i][j].image = NULL;
 
 				}
 				else
@@ -431,7 +431,7 @@ void SelectBlock(void)
 
 	//クリックでブロックを選択
 
-	if (GetKeyFlg(MOUSE_INPUT_LEF)) {
+	if (GetKeyFlg(MOUSE_INPUT_LEFT)) {
 
 		//クリック効果音
 
@@ -466,9 +466,9 @@ void SelectBlock(void)
 
 		         { 
 	              
-			     Select[TMP_CURSOR].x = Select[SELECT_CURSOR.x;
+			     Select[TMP_CURSOR].x = Select[SELECT_CURSOR].x;
 
-				 Select[TMP_CURSOR].y = Select[SELECT_CURSOR.y;
+				 Select[TMP_CURSOR].y = Select[SELECT_CURSOR].y;
 
 				 ClickStatus = E_SECOND;
 
@@ -669,7 +669,7 @@ void MoveBlock(void)
 
 			{
 
-				Block[i][j].image = GetRand(7) + ;
+				Block[i][j].image = GetRand(7) + 1;
 
 			}
 		}

@@ -19,7 +19,7 @@
 *********************************/
 
 int TitleImage;
-int TitileBGM;
+int TitleBGM;
 
 
 /********************************
@@ -49,10 +49,10 @@ int TitleScene_Initialize(void)
 
 	//‰¹Œ¹“Ç‚Ýž‚Ýˆ—
 
-	TitileBGM = LoadSoundMem("sounds/title_bgm.mp3");
+	TitleBGM = LoadSoundMem("sounds/title_bgm.mp3");
 
 
-	if (Titlemage == D_ERROR)
+	if (TitleImage == D_ERROR)
 	{
 		ret = D_ERROR;
 	}
@@ -92,7 +92,7 @@ void TitleScene_Update(void)
 	}
 
 
-	if (GetKyeFlg(MOUSE_INPUT_LEFT) == TRUE)
+	if (GetKeyFlg(MOUSE_INPUT_LEFT) == TRUE)
 	{
 
 		if (GetMousePositionX() > 120 && GetMousePositionX() < 290 &&
