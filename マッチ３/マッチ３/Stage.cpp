@@ -264,7 +264,7 @@ void StageDraw(void) {
 	}
 
 	//選択ブロックを描画
-	DrawGraph(Select[SELECT_CURSOR].x * BLOCKSIZE, Select[SELECT_CURSOR].y *
+	DrawGraph(Select[SEELECT_CURSOR].x * BLOCKSIZE, Select[SEELECT_CURSOR].y *
 
 		BLOCKSIZE, BlockImage[9], TRUE);
 
@@ -403,35 +403,35 @@ void SelectBlock(void)
 
 	//カーソル座標の取得
 
-	Select[SELECT_CURSOR].x = GetMousePositionX() / BLOCKSIZE;
+	Select[SEELECT_CURSOR].x = GetMousePositionX() / BLOCKSIZE;
 
-	Select[SELECT_CURSOR].y = GetMousePositionY() / BLOCKSIZE;
+	Select[SEELECT_CURSOR].y = GetMousePositionY() / BLOCKSIZE;
 
 	//選択ブロックの範囲を制御
 
-	if (Select[SELECT_CURSOR].x < 0)
-	{
-		Select[SELECT_CURSOR].x = 0;
+	if (Select[SEELECT_CURSOR].x < 0)
+	{	
+		Select[SEELECT_CURSOR].x = 0;
 	}
 
-	if (Select[SELECT_CURSOR].x > WIDTH - 3)
+	if (Select[SEELECT_CURSOR].x > WIDTH - 3)
 	{
-		Select[SELECT_CURSOR].x = WIDTH - 3;
+		Select[SEELECT_CURSOR].x = WIDTH - 3;
 	}
 
-	if (Select[SELECT_CURSOR].y = 0)
+	if (Select[SEELECT_CURSOR].y = 0)
 	{
-		Select[SELECT_CURSOR].y = 0;
+		Select[SEELECT_CURSOR].y = 0;
 	}
 
-	if (Select[SELECT_CURSOR].y > HEIGHT - 3)
+	if (Select[SEELECT_CURSOR].y > HEIGHT - 3)
 	{
-		Select[SELECT_CURSOR].y = HEIGHT - 3;
-	}
+		Select[SEELECT_CURSOR].y = HEIGHT - 3;
+		
 
 	//クリックでブロックを選択
 
-	if (GetKeyFlg(MOUSE_INPUT_LEFT)) {
+	if (GetKeyFig(MOUSE_INPUT_LEFT)) {
 
 		//クリック効果音
 
@@ -439,36 +439,36 @@ void SelectBlock(void)
 
 		if (ClickStatus == E_NONE) {
 
-			Select[NEXT_CURSOR].x = Select[SELECT_CURSOR].x;
+			Select[NEXT_CURSOR].x = Select[SEELECT_CURSOR].x;
 
-			Select[NEXT_CURSOR].y = Select[SELECT_CURSOR].y;
+			Select[NEXT_CURSOR].y = Select[SEELECT_CURSOR].y;
 
 			ClickStatus = E_ONCE;
 
 		}
 
 		else if (ClickStatus == E_ONCE &&
-			((abs(Select[NEXT_CURSOR].x - Select[SELECT_CURSOR].x)
+			((abs(Select[NEXT_CURSOR].x - Select[SEELECT_CURSOR].x)
 				
 		== 1 &&
 			
-			(abs(Select[NEXT_CURSOR].y - Select[SELECT_CURSOR].y)
+			(abs(Select[NEXT_CURSOR].y - Select[SEELECT_CURSOR].y)
 				
 	    == 0)) ||
 
-			(abs(Select[NEXT_CURSOR].x - Select[SELECT_CURSOR].x)
+			(abs(Select[NEXT_CURSOR].x - Select[SEELECT_CURSOR].x)
 		
 		== 0 &&
 				
-			abs(Select[NEXT_CURSOR].y - Select[SELECT_CURSOR].y) ==
+			abs(Select[NEXT_CURSOR].y - Select[SEELECT_CURSOR].y) ==
 
             1)))
 
 		         { 
 	              
-			     Select[TMP_CURSOR].x = Select[SELECT_CURSOR].x;
+			     Select[TMP_CURSOR].x = Select[SEELECT_CURSOR].x;
 
-				 Select[TMP_CURSOR].y = Select[SELECT_CURSOR].y;
+				 Select[TMP_CURSOR].y = Select[SEELECT_CURSOR].y;
 
 				 ClickStatus = E_SECOND;
 

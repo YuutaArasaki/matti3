@@ -155,5 +155,21 @@ void SceneManager_Update(void)
 	
 	switch (Game_Mode)
 
-		//4ÉyÅ[ÉW
+	{
+
+	case E_TITLE:
+
+		TitleScene_Update();
+
+		break;
+
+	case E_GAMEMAIN:
+
+		GameMainScene_Update();
+
+		break;
+
+	case E_GAME_CLEAR:
+
+
 }

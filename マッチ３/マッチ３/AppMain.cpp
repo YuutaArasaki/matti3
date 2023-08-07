@@ -9,11 +9,11 @@
 
 #include "DxLib.h" 
 
-#includ "FreamControl.h"
+#include "FreamControl.h"
 
-#includ "InputControl.h"
+#include"InputControl.h"
 
-#includ "SceneManager.h"
+#include"SceneManager.h"
 
 /******************************************
  
@@ -21,13 +21,13 @@
 
  ******************************************/
 
-#define SCREEN_HEIGHT　　(480)    //スクリーンサイズ　(高さ)
+#define SCREEN_HEIGHT  (480)    //スクリーンサイズ　(高さ)
 
-#define SCREEN_WIDTH　　 (640)    //スクリーンサイズ　(幅)
+#define SCREEN_WIDTH   (640)    //スクリーンサイズ　(幅)
 
-#define SCREEN_COLORBIT　(32)     //スクリーンカラービット
+#define SCREEN_COLORBIT  (32)     //スクリーンカラービット
 
-#define FONT_SIZE　　　　(20)     //文字サイズ
+#define FONT_SIZE        (20)     //文字サイズ
 
 
 /******************************************
@@ -84,7 +84,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 
 	//各機能の初期化処理
 
-	FreamControl_Initialize();  //フレームレート制御機能
+	FreamControl_Initiallize();  //フレームレート制御機能
 
 	Input_Initialize();         //入力制御機能
 
@@ -104,7 +104,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 
 	//文字サイズを設定
 	
-	SetFontSize(FONT_SiZE);
+	SetFontSize(FONT_SIZE);
 
 
 	//ゲームループ
@@ -114,7 +114,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 	{ 
 	  //入力制御機能更新処理
 
-		input_Update();
+		Input_Update();
 
 	  //シーンマネージャー更新処理
 
