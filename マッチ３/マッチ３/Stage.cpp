@@ -282,16 +282,6 @@ void StageDraw(void) {
 
 	DrawFormatString(590, 211, GetColor(255, 255, 255), "%3d", Stage_Mission);
 
-
-	//アイテムの取得個数を描画
-
-	for (int i = 0; i < ITEM_MAX; i++)
-	{
-		DrawRotaGraph(540, 245 + i * 30, 0.5f, 0, BlockImage[i + 1], TRUE, 0);
-
-		DrawFormatString(580, 235 + i * 30, GetColor(255, 255, 255), "%3d", Item[i]);
-
-	}
 	
 }
 
@@ -410,7 +400,7 @@ void SelectBlock(void)
 	//選択ブロックの範囲を制御
 
 	if (Select[SEELECT_CURSOR].x < 0)
-	{	
+	{
 		Select[SEELECT_CURSOR].x = 0;
 	}
 
@@ -427,191 +417,188 @@ void SelectBlock(void)
 	if (Select[SEELECT_CURSOR].y > HEIGHT - 3)
 	{
 		Select[SEELECT_CURSOR].y = HEIGHT - 3;
-		
 
-	//クリックでブロックを選択
 
-	if (GetKeyFig(MOUSE_INPUT_LEFT)) {
+		//クリックでブロックを選択
 
-		//クリック効果音
+		if (GetKeyFig(MOUSE_INPUT_LEFT)) {
 
-		PlaySoundMem(ClickSE, DX_PLAYTYPE_BACK);
+			//クリック効果音
 
-		if (ClickStatus == E_NONE) {
+			PlaySoundMem(ClickSE, DX_PLAYTYPE_BACK);
 
-			Select[NEXT_CURSOR].x = Select[SEELECT_CURSOR].x;
+			if (ClickStatus == E_NONE) {
 
-			Select[NEXT_CURSOR].y = Select[SEELECT_CURSOR].y;
+				Select[NEXT_CURSOR].x = Select[SEELECT_CURSOR].x;
 
-			ClickStatus = E_ONCE;
+				Select[NEXT_CURSOR].y = Select[SEELECT_CURSOR].y;
 
-		}
+				ClickStatus = E_ONCE;
 
-		else if (ClickStatus == E_ONCE &&
-			((abs(Select[NEXT_CURSOR].x - Select[SEELECT_CURSOR].x)
-				
-		== 1 &&
-			
-			(abs(Select[NEXT_CURSOR].y - Select[SEELECT_CURSOR].y)
-				
-	    == 0)) ||
+			}
 
-			(abs(Select[NEXT_CURSOR].x - Select[SEELECT_CURSOR].x)
-		
-		== 0 &&
-				
-			abs(Select[NEXT_CURSOR].y - Select[SEELECT_CURSOR].y) ==
+			else if (ClickStatus == E_ONCE &&
+				((abs(Select[NEXT_CURSOR].x - Select[SEELECT_CURSOR].x)
 
-            1)))
+					== 1 &&
 
-		         { 
-	              
-			     Select[TMP_CURSOR].x = Select[SEELECT_CURSOR].x;
+					(abs(Select[NEXT_CURSOR].y - Select[SEELECT_CURSOR].y)
 
-				 Select[TMP_CURSOR].y = Select[SEELECT_CURSOR].y;
+						== 0)) ||
 
-				 ClickStatus = E_SECOND;
+					(abs(Select[NEXT_CURSOR].x - Select[SEELECT_CURSOR].x)
 
-		         }
+						== 0 &&
 
-	}
+						abs(Select[NEXT_CURSOR].y - Select[SEELECT_CURSOR].y) ==
 
+						1)))
 
-	   ///選択ブロックを交換する。
-
-	if (ClickStatus == E_SECOND)
-	{
-
-		TmpBlock = Block[Select[NEXT_CURSOR].y + 1][Select[NEXT_CURSOR].x +
-			1].image;
-
-		Block[Select[NEXT_CURSOR].y + 1][Select[NEXT_CURSOR].x + 1].image =
-			Block[Select[TMP_CURSOR].y + 1][Select[TMP_CURSOR].x + 1].image;
-
-		Block[Select[TMP_CURSOR].y + 1][Select[TMP_CURSOR].x + 1].image =
-			TmpBlock;
-
-		//連鎖が３つ以上か調べる。
-
-		Result = 0;
-
-		Result += combo_check(Select[NEXT_CURSOR].y + 1,
-		
-			Select[NEXT_CURSOR].x + 1);
-
-		Result += combo_check(Select[TMP_CURSOR].y + 1,
-			Select[TMP_CURSOR].x + 1);
-		
-
-
-		//連鎖が３未満なら選択ブロックを元に戻す
-
-		if (Result == 0)
-		{
-
-
-			int TmpBlock = Block[Select[NEXT_CURSOR].y +
-				1][Select[NEXT_CURSOR].x + 1].image;
-
-			Block[Select[NEXT_CURSOR].y + 1][Select[NEXT_CURSOR].x +
-				1].image = Block[Select[TMP_CURSOR].y + 1]->image;
-			
-			Block[Select[TMP_CURSOR].y + 1][Select[TMP_CURSOR].x +
-				1].image = TmpBlock;
-
-		}
-
-		else
-
-		{
-
-			//連鎖が３つ以上ならブロックを消しブロック処理へ移行する
-
-			Stage_State = 1;
-
-		}
-
-
-		//次にクリックできるようにClokFlagを0にする
-
-		ClickStatus = E_NONE;
-
-	}
-
-}
-
-
-
-/*************************************
-
-* ステーぎ制御機能 : フェードアウト処理
-
-*引数 : なし
-
-*戻り値 : なし
-
-**************************************/
-
-
-void FadeOutBlock(void)
-{
-
-	static int BlendMode = 255;
-
-	int i, j;
-
-
-
-	//フェードアウト効果音
-
-	if (CheckSoundMem(FadeOutSE) == 0)
-	{
-
-		PlaySoundMem(FadeOutSE, DX_PLAYTYPE_BACK);
-
-	}
-
-
-	//描画モードをアルファブレンドにする
-
-	SetDrawBlendMode(DX_BLENDGRAPHTYPE_ALPHA, BlendMode);
-
-	for (i = 1; i < HEIGHT - 1; i++)
-	{
-
-		for (j = 1; j < WIDTH - 1; j++)
-		{
-
-			if (Block[i][j].image == 0)
 			{
 
-				DrawGraph(Block[i][j].x, Block[i][j].y,
-					BlockImage[Block[i][j].backup], TRUE);
+				Select[TMP_CURSOR].x = Select[SEELECT_CURSOR].x;
+
+				Select[TMP_CURSOR].y = Select[SEELECT_CURSOR].y;
+
+				ClickStatus = E_SECOND;
+
 			}
+
 		}
+
+
+		///選択ブロックを交換する。
+
+		if (ClickStatus == E_SECOND)
+		{
+
+			TmpBlock = Block[Select[NEXT_CURSOR].y + 1][Select[NEXT_CURSOR].x +
+				1].image;
+
+			Block[Select[NEXT_CURSOR].y + 1][Select[NEXT_CURSOR].x + 1].image =
+				Block[Select[TMP_CURSOR].y + 1][Select[TMP_CURSOR].x + 1].image;
+
+			Block[Select[TMP_CURSOR].y + 1][Select[TMP_CURSOR].x + 1].image =
+				TmpBlock;
+
+			//連鎖が３つ以上か調べる。
+
+			Result = 0;
+
+			Result += combo_check(Select[NEXT_CURSOR].y + 1,
+
+				Select[NEXT_CURSOR].x + 1);
+
+			Result += combo_check(Select[TMP_CURSOR].y + 1,
+				Select[TMP_CURSOR].x + 1);
+
+
+
+			//連鎖が３未満なら選択ブロックを元に戻す
+
+			if (Result == 0)
+			{
+
+
+				int TmpBlock = Block[Select[NEXT_CURSOR].y +
+					1][Select[NEXT_CURSOR].x + 1].image;
+
+				Block[Select[NEXT_CURSOR].y + 1][Select[NEXT_CURSOR].x +
+					1].image = Block[Select[TMP_CURSOR].y + 1]->image;
+
+				Block[Select[TMP_CURSOR].y + 1][Select[TMP_CURSOR].x +
+					1].image = TmpBlock;
+
+			}
+
+			else
+
+			{
+
+				//連鎖が３つ以上ならブロックを消しブロック処理へ移行する
+
+				Stage_State = 1;
+
+			}
+
+
+			//次にクリックできるようにClokFlagを0にする
+
+			ClickStatus = E_NONE;
+
+		}
+
 	}
 
 
-	//描画モードをノーブレンドにする
+	/*************************************
 
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	* ステーぎ制御機能 : フェードアウト処理
+
+	*引数 : なし
+
+	*戻り値 : なし
+
+	**************************************/
 
 
-	BlendMode -= 5;
-
-
-	if (BlendMode == 0)
+	void FadeOutBlock(void) 
+	
 	{
 
-		BlendMode = 255;
+		static int BlendMode = 255;
 
-		Stage_State = 2;
+		int i, j;
+		
 
-		StopSoundMem(FadeOutSE);
+		//フェードアウト効果音
 
+		if (CheckSoundMem(FadeOutSE) == 0)
+		{
+
+			PlaySoundMem(FadeOutSE, DX_PLAYTYPE_BACK);
+
+		}
+
+
+		//描画モードをアルファブレンドにする
+
+		SetDrawBlendMode(DX_BLENDGRAPHTYPE_ALPHA, BlendMode);
+
+		for (i = 1; i < HEIGHT - 1; i++)
+		{
+
+			for (j = 1; j < WIDTH - 1; j++)
+			{
+
+				if (Block[i][j].image == 0)
+				{
+
+					DrawGraph(Block[i][j].x, Block[i][j].y,
+						BlockImage[Block[i][j].backup], TRUE);
+				}
+			}
+		}
+
+
+		//描画モードをノーブレンドにする
+
+		SetDrawBlendMode(DX_BLNDMODE_NOBLEND, 0);
+
+		BlendMode -= 5;
+
+		if (BlendMode == 0)
+		{
+
+			BlendMode = 255;
+
+			Stage_State = 2;
+
+			StopSoundMem(FadeOutSE);
+		}
+
+	
 	}
-}
-
 /******************************************
 
 *ステージ制御機能 : ブロック移動処理
