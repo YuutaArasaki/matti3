@@ -170,13 +170,13 @@ void SceneManager_Update(void)
 
 	case E_GAME_CLEAR:
 
-		GameClearScene_Update;
+		GameClearScene_Update();
 
 		break;
 
 	case E_GAME_OVER:
 
-		GameOverScene_Update;
+		GameOverScene_Update();
 
 		break;
 
