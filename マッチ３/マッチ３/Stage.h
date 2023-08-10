@@ -29,6 +29,8 @@ void FadeOutBlock(void);
 
 void MoveBlock(void);
 
+void CheckBlock(void);
+
 void CheckClear(void);
 
 

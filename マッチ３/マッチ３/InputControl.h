@@ -30,7 +30,7 @@ int GetOldKey(int key);
 
 int GetNowKey(int key);
 
-int GetKeyFig(int key);
+int GetKeyFlg(int key);
 
 int GetMousePositionX(void);
 

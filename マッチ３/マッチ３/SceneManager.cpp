@@ -154,7 +154,6 @@ void SceneManager_Update(void)
 
 
 	switch (Game_Mode)
-
 	{
 
 	case E_TITLE:
@@ -256,7 +255,6 @@ void SceneManager_Draw(void)
 
 
 	void Change_Scene(GAME_MODE mode)
-	
 	{
 
 		Next_Mode = mode;

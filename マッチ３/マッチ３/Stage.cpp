@@ -173,7 +173,7 @@ int StageInitialize(void)
 
 	for (i = 0; i < 3; i++)
 	{
-		 
+		
 		Select[i].x = 0;
 
 		Select[i].y = 0;
@@ -418,10 +418,10 @@ void SelectBlock(void)
 	{
 		Select[SEELECT_CURSOR].y = HEIGHT - 3;
 
-
+	}
 		//クリックでブロックを選択
 
-		if (GetKeyFig(MOUSE_INPUT_LEFT)) {
+		if (GetKeyFlg(MOUSE_INPUT_LEFT)) {
 
 			//クリック効果音
 
@@ -533,7 +533,7 @@ void SelectBlock(void)
 
 	/*************************************
 
-	* ステーぎ制御機能 : フェードアウト処理
+	* ステージ制御機能 : フェードアウト処理
 
 	*引数 : なし
 
@@ -542,8 +542,7 @@ void SelectBlock(void)
 	**************************************/
 
 
-	void FadeOutBlock(void) 
-	
+	void FadeOutBlock(void)
 	{
 
 		static int BlendMode = 255;
@@ -583,7 +582,7 @@ void SelectBlock(void)
 
 		//描画モードをノーブレンドにする
 
-		SetDrawBlendMode(DX_BLNDMODE_NOBLEND, 0);
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
 		BlendMode -= 5;
 
@@ -599,6 +598,7 @@ void SelectBlock(void)
 
 	
 	}
+
 /******************************************
 
 *ステージ制御機能 : ブロック移動処理
