@@ -602,7 +602,7 @@ void MoveBlock(void)
 
 	int i, j, k;
 
-	//ブロック移動効果音
+	//ブロック移動効果音5
 
 	PlaySoundMem(MoveBlockSE, DX_PLAYTYPE_BACK);
 
