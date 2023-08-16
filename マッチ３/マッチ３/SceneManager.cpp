@@ -82,7 +82,7 @@ int SceneManager_Initialize(GAME_MODE mode)
 
 	//ゲームメイン画面
 
-	Read_Error = GameMainScene_Initialivdoze();
+	Read_Error = GameMainScene_Initialize();
 
 
 	if (Read_Error == D_ERROR)
@@ -95,7 +95,7 @@ int SceneManager_Initialize(GAME_MODE mode)
 
 	//ゲームクリア画面
 
-	Read_Error = GameClarScene_Initialize();
+	Read_Error = GameClearScene_Initialize();
 
 	if (Read_Error == D_ERROR)
 	{

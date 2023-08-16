@@ -21,6 +21,6 @@
 
 ************************************/
 
-void FreamControl_Initiallize(void);
+void FreamControl_Initialize(void);
 
 void FreamControl_Update(void);

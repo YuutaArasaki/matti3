@@ -84,7 +84,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 
 	//各機能の初期化処理
 
-	FreamControl_Initiallize();  //フレームレート制御機能
+	FreamControl_Initialize();  //フレームレート制御機能
 
 	Input_Initialize();         //入力制御機能
 

@@ -154,7 +154,7 @@ int StageInitialize(void)
 
 	ClickSE = LoadSoundMem("sounds/click_se.mp3");
 
-	FadeOutSE = LoadSoundMem("sounds/fadiout_se.mp3");
+	FadeOutSE = LoadSoundMem("sounds/fadeout_se.mp3");
 
 	MoveBlockSE = LoadSoundMem("sounds/moveblock_se.mp3");
 
@@ -287,7 +287,7 @@ void StageDraw(void) {
 
 /***********************************
 
-*ステージ制御機能
+*ステージ制御機能 : ブロック生成処理
 
 *引数 : なし
 
@@ -295,7 +295,7 @@ void StageDraw(void) {
 
 ************************************/
 
-void CreatBlock(void)
+void CreateBlock(void)
 {
 
 	int Check = 0;
@@ -324,7 +324,7 @@ void CreatBlock(void)
 
 					Block[i][j].x = (j - 1) * BLOCKSIZE;
 
-					Block[i][j].y = (i = 1) * BLOCKSIZE;
+					Block[i][j].y = (i - 1) * BLOCKSIZE;
 
 					Block[i][j].width = BLOCKSIZE;
 
@@ -336,20 +336,7 @@ void CreatBlock(void)
 		    }
 		}
 
-		/*for (i =1; i < HEIGHT -1; j++)
-		{
-		  for (j = 1; j < WIDTH - 1; j++)
-		 {
-		   if (Block[i][j].image ==NULL)
-		   {
-		    
-			Block[i][j].image = GetRand(7) + 1;
-		   
-		   }
-		   
-		  }
-		
-		}*/
+
 
 		//ブロック連鎖チェック
 
@@ -409,7 +396,7 @@ void SelectBlock(void)
 		Select[SEELECT_CURSOR].x = WIDTH - 3;
 	}
 
-	if (Select[SEELECT_CURSOR].y = 0)
+	if (Select[SEELECT_CURSOR].y < 0)
 	{
 		Select[SEELECT_CURSOR].y = 0;
 	}
@@ -631,7 +618,7 @@ void MoveBlock(void)
 			if (Block[i][j].image == 0)
 			{
 
-				for (k = 1; k > 0; k--)
+				for (k = i; k > 0; k--)
 				{
 
 					Block[k][j].image = Block[k - 1][j].image;
@@ -808,10 +795,27 @@ int Get_StageState(void)
 int Get_StageClearFlag(void)
 {
 
-	return Stage_Score;
+	return ClearFlag;
 
 }
 
+
+/***************************************
+
+*ステージ制御機能 : ミッション情報取得処理
+
+*引数 : なし
+
+*戻り値 : ミッションがクリアしているか
+
+****************************************/
+
+int Get_StageScore(void)
+{
+
+	return Stage_Score;
+
+}
 
 
 /***************************************
@@ -849,7 +853,7 @@ void Set_StageMission(int mission)
 ***********************************************/
 
 
-int conbo_check(int y, int x)
+int combo_check(int y, int x)
 {
 
 	int ret = FALSE;

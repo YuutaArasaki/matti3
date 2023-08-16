@@ -21,7 +21,7 @@
 *******************************/
 
 
-int GameMainScene_Initialivdoze(void);
+int GameMainScene_Initialize(void);
 
 void GameMainScene_Update(void);
 

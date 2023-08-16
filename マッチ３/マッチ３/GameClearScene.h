@@ -21,7 +21,7 @@
 *******************************/
 
 
-int GameClarScene_Initialize(void);
+int GameClearScene_Initialize(void);
 
 void GameClearScene_Update(void);
 

@@ -255,7 +255,7 @@ void GameMainScene_Draw(void)
 
 	do {
 
-		DrawRotaGraph(PosX, 160, 0.3, 0, NumberImage[tmp_score % 10],
+		DrawRotaGraph(PosX, 160, 0.3f, 0, NumberImage[tmp_score % 10],
 			TRUE);
 
 		tmp_score /= 10;
