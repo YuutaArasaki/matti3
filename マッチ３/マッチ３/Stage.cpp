@@ -343,7 +343,7 @@ void CreateBlock(void)
 		for (i = 1; i < HEIGHT - 1; i++)
 		{
 
-			for (j = 0; j < WIDTH - 1; j++)
+			for (j = 1; j < WIDTH - 1; j++)
 			{
 
 				Check += combo_check(i, j);
@@ -491,7 +491,7 @@ void SelectBlock(void)
 					1][Select[NEXT_CURSOR].x + 1].image;
 
 				Block[Select[NEXT_CURSOR].y + 1][Select[NEXT_CURSOR].x +
-					1].image = Block[Select[TMP_CURSOR].y + 1]->image;
+					1].image = Block[Select[TMP_CURSOR].y + 1][Select[TMP_CURSOR].x + 1].image;
 
 				Block[Select[TMP_CURSOR].y + 1][Select[TMP_CURSOR].x +
 					1].image = TmpBlock;
