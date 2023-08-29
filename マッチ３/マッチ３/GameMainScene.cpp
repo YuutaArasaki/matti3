@@ -116,14 +116,6 @@ int GameMainScene_Initialize(void)
 
 	}
 	
-	//else
-	//{
-
-	//	GameLevel++;         //ゲームレベルの更新
-
-	//	Set_StageMission(3); //ミッションを増やす
-
-	//}
 
 
 	GameCount++;

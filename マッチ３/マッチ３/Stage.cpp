@@ -689,7 +689,6 @@ void CheckBlock(void)
 		}
 	}
 
-	
 
 	//連鎖がなくなればブロック選択へ
 
